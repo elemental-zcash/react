@@ -1,6 +1,6 @@
 import React, { ReactNode } from 'react';
 import { Artboard, Page } from 'react-sketchapp';
-import { Box, Text, LayoutProvider, styled } from 'elemental-react';
+import { Box, Text, LayoutProvider, styled, ThemeProvider } from 'elemental-react';
 import { SketchRouter, Switch, Route, Link, withRouter } from 'react-sketchapp-router';
 // @ts-ignore
 import { width, position, space, height, color } from 'styled-system';
@@ -12,6 +12,9 @@ import staticRoutes from './routes/routes';
 // import NavOverlay from '../../components/lib/overlays/NavOverlay';
 
 import designSystem from './design-system/design-system';
+import colors from './styles/colors';
+import typography from './styles/typography';
+import theme from './styles/theme';
 
 const routes = staticRoutes.map((route) => ({
   ...route,
@@ -95,17 +98,23 @@ const App = () => {
         </LayoutProvider>
       </Page> */}
       {designSystem.map(({
-      type, name, screens, data, style,
+      type, name, screens, data, style, width: pageWidth
     }) => (
         <Page name={name} key={name} style={style}>
           {/* <MDXProvider components={mdComponents}> */}
+          <ThemeProvider
+            design={{ Button: {} }}
+            /* @ts-ignore */
+            theme={theme}
+          >
             <LayoutProvider breakpoint={0}>
               {screens.map(({ name: screenName, component: Component, data: compData, width, bg }: any) => (
-                <Screen bg={bg} width={width || 1440} mr={70} mb={70} name={screenName}>
+                <Screen bg={bg} width={pageWidth || width || 1440} mr={70} mb={70} name={screenName}>
                   <Component {...{ [type]: Object.assign({}, data, compData) }} />
                 </Screen>
               ))}
             </LayoutProvider>
+          </ThemeProvider>
           {/* </MDXProvider> */}
         </Page>
       ))}

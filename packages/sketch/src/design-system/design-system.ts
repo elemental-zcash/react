@@ -8,11 +8,22 @@ import Buttons from '../routes/components/buttons';
 
 // @ts-ignore
 import { Colors, Typography } from '@elemental-zcash/style-guide';
+import GettingStarted from '../routes/components/getting-started';
+import TextFields from '../routes/components/text-fields';
 // import Components from './components';
 
 // import GettingStarted from '../docs/getting-started';
 
 const pages = [{
+  name: 'Getting Started',
+  type: 'introduction',
+  width: 1024,
+  data: {},
+  screens: [{
+    name: 'Getting Started',
+    component: GettingStarted,
+  }]
+}, {
   name: 'Components',
   type: 'components',
   data: {},
@@ -39,6 +50,14 @@ const pages = [{
   }, {
     name: 'Buttons | Dark',
     component: Buttons,
+    bg: '#000000',
+    data: { theme: 'dark' }
+  }, {
+    name: 'Text Fields | Light',
+    component: TextFields,
+  }, {
+    name: 'Text Fields | Dark',
+    component: TextFields,
     bg: '#000000',
     data: { theme: 'dark' }
   }]

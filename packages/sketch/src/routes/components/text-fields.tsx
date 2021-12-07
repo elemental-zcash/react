@@ -9,6 +9,8 @@ import { Section, Row } from '@elemental-zcash/style-guide';
 import DefaultButton from '@elemental-zcash/components/lib/buttons/DefaultButton';
 import OutlinedButton from '@elemental-zcash/components/lib/buttons/OutlinedButton';
 import TextButton from '@elemental-zcash/components/lib/buttons/TextButton';
+import InputField from '@elemental-zcash/components/lib/forms/InputField';
+import TextInput from '@elemental-zcash/components/lib/forms/TextInput';
 
 // import { differenceInDays, differenceInHours, differenceInMinutes } from 'date-fns';
 // import OAuth from 'oauth-1.0a';
@@ -25,7 +27,7 @@ const subtitleLocales = {
 
 
 
-const Components = ({ components }) => {
+const TextFields = ({ components }) => {
   const { theme = 'light' } = components || {};
 
   const ButtonByShape = {
@@ -42,13 +44,28 @@ const Components = ({ components }) => {
   };
 
   return (
-    <Section title="Buttons" titleColor={theme === 'dark' ? '#fff' : '#000'}>
+    <Section title="Text Fields" titleColor={theme === 'dark' ? '#fff' : '#000'}>
       <Box p={40}>
         {/* <Headline.H4 mb={2}>
           Key Colors
         </Headline.H4> */}
         <Box>
-          {['filled', 'outlined', 'text'].map((shape) => {
+          <Box maxWidth={108} mb={20}>
+            <InputField label="Label" labelVisible={false} mb={2}>
+              {({ label, value }) => <TextInput label={label} value={value} />}
+            </InputField>
+          </Box>
+          <Box maxWidth={108} mb={20}>
+            <InputField label="Label" value="Input text" assistiveText="Assistive Text" mb={2}>
+              {({ label, value }) => <TextInput label={label} value={value} />}
+            </InputField>
+          </Box>
+          <Box maxWidth={108} mb={20}>
+            <InputField label="Label" value="Input text" assistiveText="Assistive Text" mb={2}>
+              {({ label, value }) => <TextInput label={label} value={value} isFocused />}
+            </InputField>
+          </Box>
+          {/* {['filled', 'outlined', 'text'].map((shape) => {
             const _Button = ButtonByShape[shape];
 
             return (
@@ -71,11 +88,11 @@ const Components = ({ components }) => {
                 </Row>
               </Box>
             );
-          })}
+          })} */}
         </Box>
       </Box>
     </Section>
   );
 };
 
-export default Components;
+export default TextFields;

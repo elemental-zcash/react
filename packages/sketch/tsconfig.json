@@ -8,7 +8,10 @@
     "outDir": "./.ts-compiled",
     "rootDir": "./src",
     "allowSyntheticDefaultImports": true,
-    "moduleResolution": "node"
+    "moduleResolution": "node",
+    "paths": {
+      "@elemental-zcash/components": ["../core"]
+    }
   },
   "include": [
     "./src/**/*"

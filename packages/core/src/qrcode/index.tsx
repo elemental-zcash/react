@@ -1,3 +1,6 @@
+// Code used from https://github.com/awesomejerry/react-native-qrcode-svg
+// react-native-qrcode-svg is licensed under The MIT License (MIT)
+
 // @ts-nocheck
 import React, { useMemo } from 'react';
 import { Svg, Defs, G, Path, Rect, Image, ClipPath, LinearGradient, Stop } from 'react-primitives-svg';

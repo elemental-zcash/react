@@ -37,6 +37,7 @@ module.exports = function (config) {
       'styled-components': path.resolve('./node_modules/styled-components'),
       '@elemental-zcash/style-guide': path.resolve('../../../style-guide'),
       'qrcode': path.resolve('./node_modules/qrcode'),
+      '@elemental-zcash/components': path.resolve('../core'),
     },
   };
 }
