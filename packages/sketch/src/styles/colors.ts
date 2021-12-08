@@ -87,7 +87,7 @@ const colors = {
 
 const keys = {
   primary: '#F4B728',
-  secondary: families.greens[7],
+  secondary: '#231F20',
   success: families.greens[4],
   warning: families.yellows[5],
   error: colors.red,

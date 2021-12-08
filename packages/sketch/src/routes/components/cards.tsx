@@ -3,6 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-sketchapp-router';
 import { Box, extend, Image, Row, Text } from 'elemental-react';
 // import { Svg, G, Path, Rect, Circle } from 'react-primitives-svg';
+import ElevatedCard from '@elemental-zcash/components/lib/cards/ElevatedCard';
+import OutlinedCard from '@elemental-zcash/components/lib/cards/OutlinedCard';
+import FilledCard from '@elemental-zcash/components/lib/cards/FilledCard';
+import BaseCard from '@elemental-zcash/components/lib/cards/BaseCard';
 
 import { Section, Row } from '@elemental-zcash/style-guide';
 
@@ -25,14 +29,41 @@ const Components = ({ components }) => {
         {/* <Headline.H4 mb={2}>
           Key Colors
         </Headline.H4> */}
-        <Box mx="-8px">
-          {/* FIXME: Hacky maxWidth because of irregular widths due to the borderWidth */}
-          <Row flexWrap="wrap" maxWidth={((286) * 4) + (16 * 4) + 16}>
-            {[{}].map(({ bg, stroke, borderColor, borderWidth }) => (
-              <Box mx="8px" mb="16px" bg={bg} p={20} borderRadius="4px" {...{ borderColor, borderWidth }}>
-              </Box>
-            ))}
-          </Row>
+        <Box>
+            <Box p="8px" bg="#eee" borderRadius="4px">
+              <Row>
+                <Box mx="8px" mb="16px">
+                  <ElevatedCard>
+                    <Box p="16px">
+                      <Text>Elevated Card</Text>
+                    </Box>
+                  </ElevatedCard>
+                </Box>
+                <Box mx="8px" mb="16px">
+                  <OutlinedCard>
+                    <Box p="16px">
+                      <Text>Outlined Card</Text>
+                    </Box>
+                  </OutlinedCard>
+                </Box>
+              </Row>
+              <Row>
+                <Box mx="8px" mb="16px">
+                  <FilledCard>
+                    <Box p="16px">
+                      <Text color="white">Filled Card</Text>
+                    </Box>
+                  </FilledCard>
+                </Box>
+                <Box mx="8px" mb="16px">
+                  <BaseCard>
+                    <Box p="16px">
+                      <Text>Custom Card</Text>
+                    </Box>
+                  </BaseCard>
+                </Box>
+              </Row>
+            </Box>
         </Box>
       </Box>
     </Section>
