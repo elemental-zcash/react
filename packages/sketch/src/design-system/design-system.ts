@@ -5,6 +5,7 @@ import typography from '../styles/typography';
 import QrCodes from '../routes/components/qr-codes';
 import Cards from '../routes/components/cards';
 import Buttons from '../routes/components/buttons';
+import CryptoAddresses from '../routes/components/crypto-addresses';
 
 // @ts-ignore
 import { Colors, Typography } from '@elemental-zcash/style-guide';
@@ -60,6 +61,9 @@ const pages = [{
     component: TextFields,
     bg: '#000000',
     data: { theme: 'dark' }
+  }, {
+    name: 'Crypto Addresses | Light',
+    component: CryptoAddresses,
   }]
 }, {
   name: 'Colours',
