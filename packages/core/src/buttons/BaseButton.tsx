@@ -15,7 +15,7 @@ const BaseButton = extend(_Button, () => ({
   m: 2,
   px: '20px',
   borderRadius: 2,
-  bg: 'rgba(244, 183, 40, 1)',
+  bg: 'btn.bg',
   height: 36,
   color: 'white',
   fontSize: 16,

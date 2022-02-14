@@ -5,14 +5,14 @@ import BaseButton from './BaseButton';
 const DefaultButton = extend(BaseButton, () => ({
   color: 'black',
   ':hover': {
-    bg: '#FFCF60',
+    bg: 'btn.hoverBg',
   },
   ':focus': {
-    bg: '#FFDE93',
+    bg: 'btn.focusBg',
   },
   ':disabled': {
-    bg: '#E4E2E2',
-    color: '#7D7D7D',
+    bg: 'btn.disabledBg',
+    color: 'btn.disabledText', // FIXME: elemental-react bug, we need to move this into context state that can be accessed by <Button>
   },
 }));
 

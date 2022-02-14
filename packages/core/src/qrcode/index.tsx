@@ -3,6 +3,7 @@
 
 // @ts-nocheck
 import React, { useMemo } from 'react';
+import { Platform } from 'react-primitives';
 import { Svg, Defs, G, Path, Rect, Image, ClipPath, LinearGradient, Stop } from 'react-primitives-svg';
 
 import genMatrix from './genMatrix';
@@ -14,6 +15,7 @@ const renderLogo = ({
   size,
   logo,
   svgLogo,
+  svgLogoSize,
   logoSize,
   logoBackgroundColor,
   logoMargin,
@@ -25,7 +27,7 @@ const renderLogo = ({
     logoBorderRadius + (logoMargin / logoSize) * logoBorderRadius
 
   return (
-    <G x={logoPosition} y={logoPosition}>
+    <G transform={`translate(${logoPosition}, ${logoPosition})`}>
       {/* <Defs>
         <ClipPath id='clip-logo-background'>
           <Rect
@@ -54,11 +56,22 @@ const renderLogo = ({
           ry={logoBorderRadius}
         />
       </G>
-      <G x={logoMargin} y={logoMargin}>
+      <G transform={`translate(${logoMargin}, ${logoMargin})`}>
         {Boolean(svgLogo) ? (
-          <G x={logoSize / 2} y={logoSize / 2}>
-            {svgLogo}
-          </G>
+          <>
+            {/* Can't nest an svg in react-sketchapp  */}
+            {Platform.OS === 'web' ? (
+              <Svg width={logoSize} height={logoSize} viewBox={`0 0 ${svgLogoSize} ${svgLogoSize}`}>
+                <G transform={`translate(${svgLogoSize / 2}, ${svgLogoSize / 2})`}>
+                  {svgLogo}
+                </G>
+              </Svg>
+            ) : (
+              <G transform={`translate(${svgLogoSize / 2}, ${svgLogoSize / 2})`}>
+                {svgLogo}
+              </G>
+            )}
+          </>
         ) : (
           <Image
           width={logoSize}
@@ -80,6 +93,7 @@ const QRCode = ({
   style,
   backgroundColor = 'white',
   svgLogo,
+  svgLogoSize,
   logo,
   logoSize = size * 0.2,
   logoBackgroundColor = 'none',
@@ -162,6 +176,7 @@ const QRCode = ({
           logo,
           svgLogo,
           logoSize,
+          svgLogoSize,
           logoBackgroundColor,
           logoMargin,
           logoBorderRadius

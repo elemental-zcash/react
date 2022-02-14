@@ -3,16 +3,16 @@ import { extend } from 'elemental-react';
 import BaseButton from './BaseButton';
 
 const OutlinedButton = extend(BaseButton, () => ({
-  color: 'black',
+  color: 'btn.textBtn.text',
   bg: 'transparent',
   ':hover': {
-    bg: '#FFF7E5',
+    bg: 'btn.textBtn.hoveredBg',
   },
   ':focus': {
-    bg: '#FFF2D6',
+    bg: 'btn.textBtn.focusedBg',
   },
   ':disabled': {
-    color: '#7D7D7D',
+    color: 'btn.textBtn.disabledText',
   }
 }));
 
