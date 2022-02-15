@@ -1,0 +1,38 @@
+{
+  "items": [{
+    "title": "About",
+    "url": "/react/getting-started",
+    "children": [{
+      "title": "Getting Started",
+      "url": "/react/getting-started/"
+    }, {
+      "title": "Theming",
+      "url": "/react/theming/"
+    }, {
+      "title": "Locales",
+      "url": "/react/locales/"
+    }, {
+      "title": "Icons",
+      "url": "/react/icons/"
+    }]
+  }, {
+    "title": "Components",
+    "url": "#",
+    "children": [{
+      "title": "Buttons",
+      "url": "/react/buttons/"
+    }, {
+      "title": "Cards",
+      "url": "/react/cards/"
+    }, {
+      "title": "Crypto Addresses",
+      "url": "/react/crypto-addresses/"
+    }, {
+      "title": "Text Fields",
+      "url": "/react/text-fields/"
+    }, {
+      "title": "QR Codes",
+      "url": "/react/qr-codes/"
+    }]
+  }]
+}
