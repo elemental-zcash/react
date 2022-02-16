@@ -1,13 +1,13 @@
 import React, { ReactNode } from 'react';
 import { extend, Button as __Button } from 'elemental-react';
 
-const _Button = ({ label, children, ...props }: { label?: string, children?: any }) => (
+const _Button = ({ label, uppercase, children, ...props }: { uppercase?: boolean, label?: string, children?: any }) => (
   <__Button
     outlined={false}
     label={(label && typeof label === 'string') ? label.toUpperCase() : label}
     {...props}
   >
-    {(children && typeof children === 'string') ? children.toUpperCase() : children}
+    {(children && typeof children === 'string' && uppercase) ? children.toUpperCase() : children}
   </__Button>
 );
 
@@ -23,6 +23,7 @@ const BaseButton = extend(_Button, () => ({
   fontFamily: 'Roboto Mono',
   fontWeight: 'bold',
   letterSpacing: 1,
+  uppercase: true,
 }));
 
 export default BaseButton;
