@@ -1,7 +1,7 @@
 const routes = [
   {
-    name: 'Components',
-    path: '/components',
+    name: 'WalletHomeScreen',
+    path: '/wallet/',
     exact: true,
   },
   // {

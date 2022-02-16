@@ -32,12 +32,14 @@ module.exports = function (config) {
       'react-primitives': path.resolve(__dirname, './node_modules/react-primitives/'),
       'react-primitives-svg': path.resolve(__dirname, './node_modules/react-primitives-svg/'),
       'simple-masonry-layout': path.resolve(__dirname, './node_modules/simple-masonry-layout/'),
+      'elemental-color': path.resolve(__dirname, './node_modules/elemental-color/'),
       'elemental-react': path.resolve(__dirname, './node_modules/elemental-react'),
       'react-sketchapp-router': path.resolve(__dirname, './node_modules/react-sketchapp-router'),
       'styled-components': path.resolve('./node_modules/styled-components'),
       '@elemental-zcash/style-guide': path.resolve('../../../style-guide'),
       'qrcode': path.resolve('./node_modules/qrcode'),
       '@elemental-zcash/components': path.resolve('../core'),
+      '@elemental-zcash/design': path.resolve('../design'),
     },
   };
 }

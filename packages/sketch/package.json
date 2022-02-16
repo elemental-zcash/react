@@ -31,7 +31,7 @@
     "@types/qrcode": "^1.4.1",
     "core-js": "^2.6.12",
     "date-fns": "^2.23.0",
-    "elemental-color": "0.0.2-alpha.1",
+    "elemental-color": "0.0.3",
     "elemental-react": "^0.3.6",
     "oauth-1.0a": "^2.2.6",
     "prop-types": "15.7.2",

@@ -24,7 +24,7 @@
   "dependencies": {
     "@elemental-design/material-color-utilities": "0.0.4",
     "@types/qrcode": "^1.4.1",
-    "elemental-color": "0.0.2-alpha.1",
+    "elemental-color": "0.0.3",
     "qrcode": "^1.5.0"
   }
 }

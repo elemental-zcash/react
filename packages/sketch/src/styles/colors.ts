@@ -5,9 +5,21 @@ import { generatePalette } from 'elemental-color/lib';
 const greens = generatePalette('#00e90b');
 const yellows = generatePalette('#FFDE03');
 const pinks = generatePalette('#dc13e4');
+const greys = generatePalette('#231F20');
 
 export const families = {
-  greys: ['#fafafa', '#f5f5f5', '#eeeeee', '#e0e0e0', '#bdbdbd', '#9e9e9e', '#757575', '#616161', '#424242', '#212121'],
+  greys: [
+    greys['50'],
+    greys['100'],
+    greys['200'],
+    greys['300'],
+    greys['400'],
+    greys['500'],
+    greys['600'],
+    greys['700'],
+    greys['800'],
+    greys['900'],
+  ],
   greens: [
     greens['50'],
     greens['100'],

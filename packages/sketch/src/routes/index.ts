@@ -1,6 +1,10 @@
 // import Home from './home';
 import Components from './components';
+
+// @ts-ignore
+import { Wallet } from '@elemental-zcash/design/screens';
 // import QrCode from './qr-code';
 
-export { Components };
+export const WalletHomeScreen = Wallet.HomeScreen;
+
 // export { Home };
