@@ -1,5 +1,6 @@
-import { HomeScreen } from './wallet';
+import { HomeScreen, StakingScreen } from './wallet';
 
 export const Wallet = {
   HomeScreen,
+  StakingScreen,
 };
