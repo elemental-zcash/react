@@ -1,6 +1,6 @@
 // TODO: Export @elemental-zcash/tokens
 // @ts-ignore
-import { generatePalette } from 'elemental-color/lib';
+import { generatePalette } from 'elemental-color';
 
 const greens = generatePalette('#00e90b');
 const yellows = generatePalette('#FFDE03');

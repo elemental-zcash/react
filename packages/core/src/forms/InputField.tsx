@@ -7,11 +7,13 @@ const InputField = ({ label, labelVisible, placeholder, error, assistiveText, va
 
   return (
     <Box width="100%" flexDirection="column" {...props}>
-      <Box mb={2} opacity={showLabel ? 1 : 0}>
-        <Text fontSize={12} color="#777777">
-          {showLabel ? label : ''}
-        </Text>
-      </Box>
+      {labelVisible !== false && (
+        <Box mb={2} opacity={showLabel ? 1 : 0}>
+          <Text fontSize={12} color="#777777">
+            {showLabel ? label : '.'}
+          </Text>
+        </Box>
+      )}
       <Box>
         {React.isValidElement(children) ? children : children({ label, placeholder, error, value })}
       </Box>
