@@ -109,6 +109,17 @@ export default {
   green: families.greens[5],
   navy: '#004175',
   red: '#ab000d',
+  input: {
+    label: '#777777',
+  },
+  danger: {
+    emphasis: '#FF0000',
+    text: '#FF0000',
+  },
+  icons: {
+    qrcode: '#000',
+    copy: '#FFBF00',
+  },
   btn: {
     bg: 'rgba(244, 183, 40, 1)',
     hoverBg: '#FFCF60',
