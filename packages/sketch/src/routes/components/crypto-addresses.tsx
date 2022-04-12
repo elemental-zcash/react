@@ -7,6 +7,7 @@ import ElevatedCard from '@elemental-zcash/components/lib/cards/ElevatedCard';
 import OutlinedCard from '@elemental-zcash/components/lib/cards/OutlinedCard';
 import FilledCard from '@elemental-zcash/components/lib/cards/FilledCard';
 import BaseCard from '@elemental-zcash/components/lib/cards/BaseCard';
+import { TAddressColumn, ZAddressColumn } from '@elemental-zcash/components';
 
 import { Section, Row } from '@elemental-zcash/style-guide';
 
@@ -17,81 +18,7 @@ import { Section, Row } from '@elemental-zcash/style-guide';
 // import Section from '../../common/Section';
 // import fetch from 'sync-fetch/index';
 
-function chunkSubstr(str, size) {
-  const numChunks = Math.ceil(str.length / size)
-  const chunks = new Array(numChunks)
 
-  for (let i = 0, o = 0; i < numChunks; ++i, o += size) {
-    chunks[i] = str.substr(o, size)
-  }
-
-  return chunks
-}
-
-const CryptoAddress = ({ children }) => {
-  return (
-    <Text fontFamily="Roboto Mono" fontSize={14}>
-      {children}
-    </Text>
-  )
-};
-
-const TAddressColumn = ({ children }) => {
-  const taddrSplit = chunkSubstr(children, (children.length / 2));
-
-  return (
-    <Box>
-      {taddrSplit.map((taddrPart, i) => (
-        <Row alignItems="center">
-          <Text mr={2} fontSize={12} color="primary">
-            {i + 1}
-          </Text>
-          <CryptoAddress>
-            {taddrPart}
-          </CryptoAddress>
-        </Row>
-      ))}
-    </Box>
-  )
-}
-
-const ZAddressColumn = ({ children }) => {
-  const zaddrSplit = chunkSubstr(children, (children.length / 8));
-
-  const firstHalf = zaddrSplit.slice(0, zaddrSplit.length / 2);
-  const secondHalf = zaddrSplit.slice(zaddrSplit.length / 2, zaddrSplit.length);
-
-  return (
-    <Box>
-      <Row alignItems="center">
-        <Box mr={2}>
-          {firstHalf.map((zaddrPart, i) => (
-            <Row alignItems="center">
-              <Text mr={2} fontSize={12} color="primary">
-                {i + 1}
-              </Text>
-              <CryptoAddress>
-                {zaddrPart}
-              </CryptoAddress>
-            </Row>
-          ))}
-        </Box>
-        <Box>
-          {secondHalf.map((zaddrPart, i) => (
-            <Row alignItems="center">
-              <Text mr={2} fontSize={12} color="primary">
-                {(zaddrSplit.length / 2) + i + 1}
-              </Text>
-              <CryptoAddress>
-                {zaddrPart}
-              </CryptoAddress>
-            </Row>
-          ))}
-        </Box>
-      </Row>
-    </Box>
-  )
-}
 
 
 
