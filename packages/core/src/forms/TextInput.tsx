@@ -7,8 +7,9 @@ import { Platform } from 'react-primitives';
 const TextInput: FunctionComponent<{
   label?: string,
   underlined?: boolean,
+  placeholderColor?: string,
 }> = ({
-  label, placeholder, error, value = '', children, isFocused, focusedColor = '#F4B728', lineColor = '#000000', underlined, ...props
+  label, placeholder, error, value = '', children, isFocused, focusedColor = '#F4B728', placeholderColor, lineColor = '#000000', underlined, ...props
 }: any) => (
     <_TextInput
       name="TextInput"
@@ -16,7 +17,7 @@ const TextInput: FunctionComponent<{
       fontSize={18}
       fontFamily="secondary"
       mb="6px"
-      color={!value ? 'greys.8' : undefined}
+      color={!value ? placeholderColor : undefined}
       // @ts-ignore
       placeholder={!value ? (placeholder || label) : undefined}
       value={value}
@@ -27,6 +28,7 @@ const TextInput: FunctionComponent<{
 
 TextInput.defaultProps = {
   underlined: true,
+  placeholderColor: 'greys.8',
 };
 
 export default TextInput;

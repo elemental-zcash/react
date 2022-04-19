@@ -7,10 +7,10 @@ const InputField = ({ label, labelVisible, placeholder, error, assistiveText, va
 
   return (
     <Box width="100%" flexDirection="column" {...props}>
-      {labelVisible !== false && (
-        <Box mb={2} opacity={showLabel ? 1 : 0}>
+      {labelVisible !== false && (// @ts-ignore
+        <Box mb={2} opacity={showLabel ? 1 : 0} style={{ opacity: showLabel ? 1 : 0 }}>
           <Text fontSize={12} color="input.label">
-            {showLabel ? label : '.'}
+            {showLabel ? label : ' '}
           </Text>
         </Box>
       )}
