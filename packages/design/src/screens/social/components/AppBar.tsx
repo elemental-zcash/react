@@ -1,27 +1,52 @@
 import React, { ReactNode } from 'react';
-import { Row, Text } from 'elemental-react';
+import { Box, Text, Row, Line, extend } from 'elemental-react';
 
-
-const Title = ({ children }: { children: ReactNode }) => (
-  <Text color="white" fontFamily="Helvetica Neue" fontSize={24} fontWeight={700}>
-    {children}
-  </Text>
+const MenuIcon = ({ color = 'black', ...props }) => (
+  <Box width={48} height={48} px="4px" py="6px" justifyContent="space-between" {...props}>
+    {(new Array(3).fill(null)).map((_, i) => (<Line key={i} bg={color} height="4px" width="40px" />))}
+  </Box>
 );
 
-const SyncedStatus = ({ ...props }) => (
-  <Row alignItems="center" {...props}>
-    <Text fontSize={12} fontWeight={700} color="#8ACC36">Synced</Text>
-    <Text fontSize={32} color="#8ACC36" lineHeight={24}>•</Text>
+
+const Title = extend(Text as any, () => ({
+  color: 'black',
+  ml: 16,
+  fontFamily: 'IBM Plex Serif',
+  bold: true,
+  fontSize: 28,
+  lineHeight: 32,
+}));
+
+// @ts-ignore
+Title.defaultProps = {
+  children: 'ZPublish',
+};
+
+const Flex = () => (
+  <Box flex={1} />
+);
+
+const AppBar = ({
+  title = 'Title',
+  color,
+  children,
+  ...props
+}: { title?: string, color?: string, children?: ReactNode }) => (
+  <Row p={16} alignItems="center" justifyContent="space-between" {...props}>
+    {children || (
+      <>
+        <MenuIcon color={color} />{/* @ts-ignore */}
+        <Title color={color}>{title}</Title>
+        <Flex />
+    </>
+    )}
+    {/* <Box pr="4px">
+      <ProfileIcon />
+    </Box> */}
   </Row>
 );
-
-const AppBar = ({ children, ...props }: { children: ReactNode }) => (
-  <Row height={60} px={20} justifyContent="space-between" alignItems="center" {...props}>
-    {children}
-  </Row>
-);
-
+AppBar.MenuIcon = MenuIcon;
 AppBar.Title = Title;
-AppBar.SyncedStatus = SyncedStatus;
+AppBar.Fill = Flex;
 
 export default AppBar;
