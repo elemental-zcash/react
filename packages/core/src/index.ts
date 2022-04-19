@@ -9,7 +9,7 @@ import theme from './styles/theme';
 
 import {
   CryptoAddressText, TruncatedCryptoAddress, TruncatedTAddress, TruncatedUnifiedAddress, TruncatedZAddress,
-  TAddressColumn, ZAddressColumn,
+  TAddressColumn, ZAddressColumn, CryptoAddressCopy,
 } from './addresses';
 
 export {
@@ -21,7 +21,7 @@ export {
   InputField, TextInput,
 
   CryptoAddressText, TruncatedCryptoAddress, TruncatedTAddress, TruncatedUnifiedAddress, TruncatedZAddress,
-  TAddressColumn, ZAddressColumn,
+  TAddressColumn, ZAddressColumn, CryptoAddressCopy,
 
   Icon,
 };

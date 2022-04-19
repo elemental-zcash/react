@@ -9,6 +9,11 @@ const routes = [
     path: '/wallet/staking',
     exact: true,
   },
+  {
+    name: 'SocialHomeScreen',
+    path: '/social/',
+    exact: true,
+  },
   // {
   //   name: 'QrCode',
   //   path: '/qr-code',

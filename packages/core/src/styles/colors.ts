@@ -117,8 +117,8 @@ export default {
     text: '#FF0000',
   },
   icons: {
-    qrcode: '#000',
-    copy: '#FFBF00',
+    qrcode_box: '#000',
+    copy_box: '#FFBF00',
   },
   btn: {
     bg: 'rgba(244, 183, 40, 1)',

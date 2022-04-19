@@ -6,9 +6,13 @@ function getDisplayName(WrappedComponent: any) {
   return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 }
 
+function pascalToSnakeCase(str: string) {
+  return str.split(/(?=[A-Z])/).join('_').toLowerCase();
+}
+
 const Icon = ({ icon: IconComponent, color }: { icon: any, color?: string }) => {
   const { theme } = useTheme();
-  const iconName = getDisplayName(IconComponent);
+  const iconName = pascalToSnakeCase(getDisplayName(IconComponent).replace('Icon', ''));
 
   const [iconColor, themeColor] = useMemo(() => {
     const iconColor = themeGet(`colors.icons.${iconName}`, '#000')({ theme });

@@ -32,37 +32,29 @@ export const CryptoAddressText = ({ children, ...props }: any) => {
   );
 };
 
-export const TruncatedCryptoAddress = ({ address }: { address: string }) => {
+export const TruncatedCryptoAddress = ({ address, color }: { address: string, color?: string }) => {
   const firstText = address.substring(0, address.length - TRUNCATE_END_LENGTH);
   const lastText = address.substring(address.length - TRUNCATE_END_LENGTH, address.length);
 
   return (
     <Row flexWrap="nowrap" overflow="hidden" flex={1}>
-      <CryptoAddressText style={{ flexShrink: 1 }} maxHeight={14} lineHeight={20}>{firstText}</CryptoAddressText>
-      <CryptoAddressText maxHeight={20} lineHeight={20}>...</CryptoAddressText>
-      <CryptoAddressText maxHeight={20} lineHeight={20}>{lastText}</CryptoAddressText>
+      <CryptoAddressText style={{ flexShrink: 1 }} maxHeight={14} lineHeight={20} color={color}>{firstText}</CryptoAddressText>
+      <CryptoAddressText maxHeight={20} lineHeight={20} color={color}>...</CryptoAddressText>
+      <CryptoAddressText maxHeight={20} lineHeight={20} color={color}>{lastText}</CryptoAddressText>
     </Row>
   );
 };
 
-export const CryptoAddressCopy = ({ address, ...props }: { address: string }) => {
-  const theme = useTheme();
-
-  const [qrIconColor, copyIconColor] = useMemo(() => {
-    const qrIconColor = themeGet('colors.icons.qrcode')({ theme });
-    const copyIconColor = themeGet('colors.icons.copy')({ theme });
-    return [qrIconColor, copyIconColor];
-  }, [theme]);
-
+export const CryptoAddressCopy = ({ address, color, ...props }: { address: string, color?: string }) => {
   return (
     <Row borderRadius={12} bg="#fff" px={16} py="8px" justifyContent="space-between" {...props}>
-      <TruncatedCryptoAddress address={address} />
+      <TruncatedCryptoAddress address={address} color={color} />
       <Row pl={2}>
         <Box mr={1}>
-          <Icon icon={QrcodeBoxIcon} color="colors.icons.qrcode" />
+          <Icon icon={QrcodeBoxIcon} color="icons.qrcode_box" />
         </Box>
         <Box>
-          <Icon icon={CopyBoxIcon} color="colors.icons.qrcode" />
+          <Icon icon={CopyBoxIcon} color="icons.copy_box" />
         </Box>
       </Row>
     </Row>
