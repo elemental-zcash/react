@@ -1,5 +1,5 @@
-import React, { ReactNode, useMemo } from 'react';
-import { Box, Row, Text } from 'elemental-react';
+import React, { forwardRef, ReactNode, useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { Box, extend, Row, Text, useWindowDimensions } from 'elemental-react';
 // @ts-ignore
 import { Svg, Path, Rect } from '@react-platform/svg'; // @ts-ignore
 import { themeGet } from '@styled-system/theme-get'; // @ts-ignore
@@ -7,6 +7,7 @@ import { useTheme } from 'styled-components/primitives';
 
 import { CopyBoxIcon, QrcodeBoxIcon } from '@elemental-zcash/icons';
 import { Icon } from '../icons';
+import { Platform } from 'react-primitives';
 
 const TRUNCATE_END_LENGTH = 6;
 
@@ -24,13 +25,55 @@ const TRUNCATE_END_LENGTH = 6;
 //   </Svg>
 // );
 
-export const CryptoAddressText = ({ children, ...props }: any) => {
+export const CryptoAddressText = forwardRef(({ children, ...props }: any, ref) => {
   return (
-    <Text fontFamily="Roboto Mono" fontSize={14} {...props}>
+    <Text ref={ref} fontFamily="Roboto Mono" fontSize={14} lineHeight={20} {...props}>
       {children}
     </Text>
   );
-};
+});
+
+const MiddleTextOverflow = ({ as = Text, children, ...props }: { as?: any, children: ReactNode, lineHeight?: any, color?: any }) => {
+  // const textRef = useRef<HTMLParagraphElement>(null);
+  const [showEllipsis, setShowEllipsis] = useState(true);
+  const text = typeof children === 'string' ? children : '';
+  const { width } = useWindowDimensions();
+  const TextComp: typeof Text = as;
+
+  const firstText = text.substring(0, text.length - TRUNCATE_END_LENGTH);
+  const lastText = text.substring(text.length - TRUNCATE_END_LENGTH, text.length);
+
+  // useCallback(() => {
+  //   if (textRef && textRef.current) {
+  //     if (Math.abs(textRef.current.scrollWidth - textRef.current.offsetWidth) <= 2) {
+  //       setShowEllipsis(false);
+  //     } else {
+  //       setShowEllipsis(true);
+  //     }
+  //   }
+  // }, [textRef.current, setShowEllipsis]);
+
+  const textRef: any = Platform.OS === 'web' ? useRef<HTMLParagraphElement>(null) : undefined;
+
+  useEffect(() => {
+    if (Platform.OS === 'web' && textRef && textRef.current) {
+      if (Math.abs(textRef.current.scrollWidth - textRef.current.offsetWidth) <= 2) {
+        setShowEllipsis(false);
+      } else {
+        setShowEllipsis(true);
+      }
+    }
+  }, [width]);
+
+  return !text ? null : (
+    <>{/* @ts-ignore */}
+      <TextComp ref={textRef} style={{ overflowX: 'clip' }} {...props}>{firstText}</TextComp>
+      {showEllipsis && <TextComp {...props}>...</TextComp>}
+      {/* @ts-ignore */}
+      <TextComp {...props}>{lastText}</TextComp>
+    </>
+  );
+}
 
 export const TruncatedCryptoAddress = ({ address, color }: { address: string, color?: string }) => {
   const firstText = address.substring(0, address.length - TRUNCATE_END_LENGTH);
@@ -38,28 +81,68 @@ export const TruncatedCryptoAddress = ({ address, color }: { address: string, co
 
   return (
     <Row flexWrap="nowrap" overflow="hidden" flex={1}>
-      <CryptoAddressText style={{ flexShrink: 1 }} maxHeight={14} lineHeight={20} color={color}>{firstText}</CryptoAddressText>
+      {/* <CryptoAddressText style={{ flexShrink: 1 }} maxHeight={14} lineHeight={20} color={color}>{firstText}</CryptoAddressText>
       <CryptoAddressText maxHeight={20} lineHeight={20} color={color}>...</CryptoAddressText>
-      <CryptoAddressText maxHeight={20} lineHeight={20} color={color}>{lastText}</CryptoAddressText>
+      <CryptoAddressText maxHeight={20} lineHeight={20} color={color}>{lastText}</CryptoAddressText> */}
+      <MiddleTextOverflow as={CryptoAddressText} lineHeight={20} color={color}>{address}</MiddleTextOverflow>
     </Row>
   );
 };
 
-export const CryptoAddressCopy = ({ address, color, ...props }: { address: string, color?: string }) => {
+const CryptoAddressCopyQrcode = ({ ...props }) => (
+  <Box mr={1} {...props}>
+    <Icon icon={QrcodeBoxIcon} color="icons.qrcode_box" />
+  </Box>
+);
+
+const CryptoAddressCopyQrcodeBox = extend(CryptoAddressCopyQrcode, {
+  ':hover': {
+    opacity: '0.8'
+  },
+}) as any;
+
+const CryptoAddressCopyCopyIcon = ({ ...props }) => (
+  <Box {...props}>
+    <Icon icon={CopyBoxIcon} color="icons.copy_box" />
+  </Box>
+);
+
+const CryptoAddressCopyCopyBox = extend(CryptoAddressCopyCopyIcon, {
+  ':hover': {
+    opacity: '0.8'
+  },
+}) as any;
+
+const CryptoAddressCopyIcons = ({ children, ...props }: { children: ReactNode }) => (
+  <Row pl={2}>
+    {children}
+  </Row>
+);
+
+export const CryptoAddressCopy = ({ address, color, onCopyPress, onQrcodePress, children, ...props }: {
+  address: string, color?: string, children?: ReactNode, onCopyPress: Function, onQrcodePress: Function,
+}) => {
   return (
     <Row borderRadius={12} bg="#fff" px={16} py="8px" justifyContent="space-between" {...props}>
-      <TruncatedCryptoAddress address={address} color={color} />
-      <Row pl={2}>
-        <Box mr={1}>
-          <Icon icon={QrcodeBoxIcon} color="icons.qrcode_box" />
-        </Box>
-        <Box>
-          <Icon icon={CopyBoxIcon} color="icons.copy_box" />
-        </Box>
-      </Row>
+      {children || (
+        <>
+          <TruncatedCryptoAddress address={address} color={color} />
+          <CryptoAddressCopyIcons>
+            <CryptoAddressCopyQrcodeBox onPress={onQrcodePress} />
+            <CryptoAddressCopyCopyBox onPress={onCopyPress} />
+          </CryptoAddressCopyIcons>
+        </>
+      )}
     </Row>
   );
 };
+
+
+CryptoAddressCopy.Address = TruncatedCryptoAddress;
+CryptoAddressCopy.Icons = CryptoAddressCopyIcons;
+CryptoAddressCopy.QrcodeBox = CryptoAddressCopyQrcodeBox;
+CryptoAddressCopy.CopyBox = CryptoAddressCopyCopyIcon;
+
 
 export const TruncatedZAddress = ({ ...props }: { address: string }) => <TruncatedCryptoAddress {...props} />;
 export const TruncatedTAddress = ({ ...props }: { address: string }) => <TruncatedCryptoAddress {...props} />;

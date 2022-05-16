@@ -1,9 +1,10 @@
 {
   "name": "@elemental-zcash/components",
-  "version": "0.0.2-beta.0",
+  "version": "0.0.2-beta.1",
   "description": "",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
+  "sketch": "lib/index.js",
   "scripts": {
     "build:types": "tsc -d -p tsconfig.json",
     "build": "tsc -p tsconfig.json",
