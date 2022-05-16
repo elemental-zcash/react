@@ -33,7 +33,7 @@ export const CryptoAddressText = forwardRef(({ children, ...props }: any, ref) =
   );
 });
 
-const MiddleTextOverflow = ({ as = Text, children, ...props }: { as?: any, children: ReactNode, lineHeight?: any, color?: any }) => {
+const MiddleTextOverflow = ({ as = Text, children, ...props }: { as?: any, maxHeight?: string | number, children: ReactNode, lineHeight?: any, color?: any }) => {
   // const textRef = useRef<HTMLParagraphElement>(null);
   const [showEllipsis, setShowEllipsis] = useState(true);
   const text = typeof children === 'string' ? children : '';
@@ -67,7 +67,7 @@ const MiddleTextOverflow = ({ as = Text, children, ...props }: { as?: any, child
 
   return !text ? null : (
     <>{/* @ts-ignore */}
-      <TextComp ref={textRef} style={{ overflowX: 'clip' }} {...props}>{firstText}</TextComp>
+      <TextComp ref={textRef} style={{ overflowX: 'clip' }} flexShrink={1} {...props}>{firstText}</TextComp>
       {showEllipsis && <TextComp {...props}>...</TextComp>}
       {/* @ts-ignore */}
       <TextComp {...props}>{lastText}</TextComp>
@@ -84,7 +84,7 @@ export const TruncatedCryptoAddress = ({ address, color }: { address: string, co
       {/* <CryptoAddressText style={{ flexShrink: 1 }} maxHeight={14} lineHeight={20} color={color}>{firstText}</CryptoAddressText>
       <CryptoAddressText maxHeight={20} lineHeight={20} color={color}>...</CryptoAddressText>
       <CryptoAddressText maxHeight={20} lineHeight={20} color={color}>{lastText}</CryptoAddressText> */}
-      <MiddleTextOverflow as={CryptoAddressText} lineHeight={20} color={color}>{address}</MiddleTextOverflow>
+      <MiddleTextOverflow as={CryptoAddressText} maxHeight={20} lineHeight={20} color={color}>{address}</MiddleTextOverflow>
     </Row>
   );
 };
