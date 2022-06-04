@@ -3,7 +3,7 @@ import { Button } from './buttons';
 import Details from './Details';
 import { Icon } from './icons';
 
-import { InputField, TextInput, AutoTextArea } from './forms';
+import { InputField, TextInput, AutoTextArea, Select } from './forms';
 
 import theme from './styles/theme';
 
@@ -18,7 +18,7 @@ export {
   Details,
   theme,
 
-  InputField, TextInput, AutoTextArea,
+  InputField, TextInput, AutoTextArea, Select,
 
   CryptoAddressText, TruncatedCryptoAddress, TruncatedTAddress, TruncatedUnifiedAddress, TruncatedZAddress,
   TAddressColumn, ZAddressColumn, CryptoAddressCopy,

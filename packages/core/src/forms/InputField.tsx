@@ -9,8 +9,8 @@ const InputField = ({ label, labelVisible, placeholder, error, assistiveText, va
     <Box width="100%" flexDirection="column" {...props}>
       {labelVisible !== false && (// @ts-ignore
         <Box mb={2} opacity={showLabel ? 1 : 0} style={{ opacity: showLabel ? 1 : 0 }}>
-          <Text fontSize={12} color="input.label">
-            {showLabel ? label : ' '}
+          <Text fontSize={14} color="input.label">{/* FIXME: Find a way to remove the . without height being 0 on web. Shouldn't be visible with opacity 0 */}
+            {showLabel ? label : '.'}
           </Text>
         </Box>
       )}

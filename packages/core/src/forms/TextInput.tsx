@@ -24,6 +24,7 @@ const TextInput = forwardRef<ComponentProps<typeof _TextInput>, TextInputProps>(
 }: any, ref) => (
     <_TextInput
       // @ts-ignore
+      ref={ref}
       forwardedRef={ref}
       name="TextInput"
       // height={24}
@@ -34,6 +35,10 @@ const TextInput = forwardRef<ComponentProps<typeof _TextInput>, TextInputProps>(
       // @ts-ignore
       placeholder={!value ? (placeholder || label) : undefined}
       value={value}
+      pb="4px"
+      borderWidth={0}
+      borderStyle="solid"
+      {...underlined && { borderBottomWidth: 1, borderBottomColor: 'greys.8' }}
       {...props}
     />
     // {underlined && <Line height={1} width="100%" bg={isFocused ? focusedColor : lineColor} />}
