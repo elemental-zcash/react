@@ -34,6 +34,7 @@ const AutoTextArea = ({ value, placeholder, ...props }: { value?: string, placeh
       setText(value);
     }
 
+    // FIXME: Figure out why + 7 is needed with wordBreak: 'break-word'
     setParentHeight(`${textAreaRef?.current.scrollHeight}px`);
     setTextAreaHeight(`${textAreaRef?.current.scrollHeight}px`);
   }, [text, textAreaRef, value]);
@@ -49,7 +50,13 @@ const AutoTextArea = ({ value, placeholder, ...props }: { value?: string, placeh
         as="textarea"
         style={{ fontFamily: 'IBM Plex Sans', minHeight: 220, height: textAreaHeight, fontSize: 30, outline: 'none', resize: 'none' }}
         onChange={onChangeHandler}
-        rows={1}
+        rows={1} // @ts-ignore
+        style={{ wordBreak: 'break-word' }}
+        height={textAreaHeight}
+        {...props}
+        // height={parentHeight}
+        // flex={1}
+        // {...props}
       />
     </Box>
   );

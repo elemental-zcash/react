@@ -38,8 +38,6 @@ const SingleValue = ({
   children,
   ...props
 }: SingleValueProps<any>) => {
-  console.log({ props, children });
-
   return (
     <components.SingleValue {...props}>{/* @ts-ignore */}
       <Text uppercase>{children}</Text>
@@ -51,8 +49,6 @@ const Option = ({
   textNoWrap,
   ...props
 }: OptionProps<any> & { textNoWrap?: boolean }) => {
-  console.log({ props, children });
-
   return ( // @ts-ignore
     <components.Option style={{ minWidth: 128 }} {...props}>{/* @ts-ignore */}
       <Text uppercase style={textNoWrap ? { whiteSpace: 'nowrap' } : undefined}>{children}</Text>
