@@ -43,15 +43,6 @@ const MiddleTextOverflow = ({ as = Text, children, ...props }: { as?: any, maxHe
   const firstText = text.substring(0, text.length - TRUNCATE_END_LENGTH);
   const lastText = text.substring(text.length - TRUNCATE_END_LENGTH, text.length);
 
-  // useCallback(() => {
-  //   if (textRef && textRef.current) {
-  //     if (Math.abs(textRef.current.scrollWidth - textRef.current.offsetWidth) <= 2) {
-  //       setShowEllipsis(false);
-  //     } else {
-  //       setShowEllipsis(true);
-  //     }
-  //   }
-  // }, [textRef.current, setShowEllipsis]);
 
   const textRef: any = Platform.OS === 'web' ? useRef<HTMLParagraphElement>(null) : undefined;
 
@@ -119,8 +110,17 @@ const CryptoAddressCopyIcons = ({ children, ...props }: { children: ReactNode })
   </Row>
 );
 
-export const CryptoAddressCopy = ({ address, color, onCopyPress, onQrcodePress, children, ...props }: {
-  address: string, color?: string, children?: ReactNode, onCopyPress: Function, onQrcodePress: Function,
+export const CryptoAddressCopy = ({
+  address,
+  color,
+  onCopyPress,
+  onQrcodePress,
+  children,
+  showQrCode = true,
+  showCopy = true,
+  ...props
+}: {
+  address: string, color?: string, children?: ReactNode, onCopyPress: Function, onQrcodePress: Function, showQrCode: boolean, showCopy: boolean,
 }) => {
   return (
     <Row borderRadius={12} bg="#fff" px={16} py="8px" justifyContent="space-between" {...props}>
@@ -128,8 +128,8 @@ export const CryptoAddressCopy = ({ address, color, onCopyPress, onQrcodePress, 
         <>
           <TruncatedCryptoAddress address={address} color={color} />
           <CryptoAddressCopyIcons>
-            <CryptoAddressCopyQrcodeBox onPress={onQrcodePress} />
-            <CryptoAddressCopyCopyBox onPress={onCopyPress} />
+            {showQrCode && <CryptoAddressCopyQrcodeBox onPress={onQrcodePress} />}
+            {showCopy && <CryptoAddressCopyCopyBox onPress={onCopyPress} />}
           </CryptoAddressCopyIcons>
         </>
       )}
