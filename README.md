@@ -4,7 +4,7 @@ React implementation of Elemental Zcash component library and Design System. Wor
 ## Getting Started
 
 ```sh
-npm install @elemental-zcash/components elemental-react
+npm install --save elemental-react react-primitives react-native-web@0.15.1 @elemental-zcash/components @react-platform/core @react-platform/native styled-components@5 styled-system@5 webfontloader
 ```
 
 ## Usage
