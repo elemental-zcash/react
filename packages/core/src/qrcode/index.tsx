@@ -89,6 +89,7 @@ const renderLogo = ({
 const QRCode = ({
   value = 'hello world',
   size = 100,
+  sizeWeb = undefined,
   color = 'black',
   style,
   backgroundColor = 'white',
@@ -135,8 +136,8 @@ const QRCode = ({
         size + quietZone * 2,
         size + quietZone * 2
       ].join(' ')}
-      width={size}
-      height={size}
+      width={Platform.OS === 'web' ? (sizeWeb || size) : size}
+      height={Platform.OS === 'web' ? (sizeWeb || size) : size}
       style={style}
     >
       <Defs>

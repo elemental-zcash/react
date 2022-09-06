@@ -106,3 +106,8 @@ dist
 .DS_Store
 
 lib/
+
+docs/public/
+docs/public2/
+packages/web/public/
+packages/web/
